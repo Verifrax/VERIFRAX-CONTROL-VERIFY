@@ -1,0 +1,12 @@
+{
+  "name": "@verifrax/control-verify",
+  "private": true,
+  "version": "1.0.0",
+  "description": "External replay verifier for VERIFRAX public control fixed point.",
+  "type": "module",
+  "scripts": {
+    "verify": "node scripts/verify-public-control-fixed-point.mjs",
+    "verify:strict": "node scripts/verify-public-control-fixed-point.mjs --strict"
+  },
+  "license": "AGPL-3.0-or-later"
+}

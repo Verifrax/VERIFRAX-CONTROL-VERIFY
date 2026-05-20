@@ -1,0 +1,33 @@
+name: External public control verify
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-public-control-verify
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: External strict verify
+        run: npm run verify:strict
+      - name: Upload verification report
+        uses: actions/upload-artifact@v4
+        with:
+          name: verifrax-external-public-control-verify-report
+          path: reports/public-control-verify.latest.json
